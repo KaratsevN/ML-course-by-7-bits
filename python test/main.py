@@ -31,9 +31,9 @@ def Seq(*elements):
 
 
 def at(pair , i):
-    #if(head(pair) is None):
-    #   return "Not find"
-    #hotfix
+    if(head(pair) is None):
+       return None
+#hotfix
     if(i == 0):
         return pair[0]
     #if(pair[i] is None):
@@ -43,15 +43,29 @@ def at(pair , i):
     #i = i-1
     return at(tail(pair), i - 1)
 
-j = 0
 def size(pair):
-    if(pair is not None):
-        j = j + 1
-        return size(tail(pair))
-    else return j
+    if(pair != None):
+        return 1 + size(tail(pair))
+    else:
+        return 0
+
+def eq(pair1, pair2):
+    if(size(pair1) != size(pair2)):
+        return False
+    #
+    if(head(pair1) == head(pair2)):
+        return eq(tail(pair1), tail(pair2))
+    else:
+        if((head(pair1) is None) or (head(pair2) is None)):
+            return True
+        else:
+            return False
 
 s = Seq(1,2,3,4,5)
 s == (1, (2, (3, (4, (5,)))))
 head(s) == 1
 tail(s) == (2, (3, (4, (5,))))
-print(at(Seq(1,2,3), 1))
+#print(at(Seq(1,2,3), 0))
+#print(size(Seq(1,2,3,4)))
+print(eq(Seq(1,2), Seq(1,2)))
+#print(eq(Seq(1,2,3), Seq(1,2)))
